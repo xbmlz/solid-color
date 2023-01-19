@@ -1,11 +1,22 @@
-import type { Component } from 'solid-js'
+import { Component, createSignal } from 'solid-js'
 import styles from './App.module.css'
-import { TwitterPicker } from '../src'
+import { MaterialPikcer, HuePikcer, ColorResult, HslColor } from '../src'
 
 const App: Component = () => {
+  const [color, setColor] = createSignal<HslColor>({
+    h: 150,
+    s: 0.5,
+    l: 0.2,
+    a: 1,
+  })
+
+  const handleChangeComplete = (color: ColorResult) => {
+    setColor(color.hsl)
+  }
   return (
     <div class={styles.App}>
-      <TwitterPicker />
+      <MaterialPikcer color={color()} onChangeComplete={handleChangeComplete} />
+      <HuePikcer color={color()} onChangeComplete={handleChangeComplete} />
     </div>
   )
 }

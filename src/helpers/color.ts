@@ -8,7 +8,7 @@ export const simpleCheckForValidColor = (data: any) => {
   each(keysToCheck, (letter) => {
     if (data[letter]) {
       checked += 1
-      if (!Number.isNaN(data[letter])) {
+      if (!isNaN(data[letter])) {
         passed += 1
       }
       if (letter === 's' || letter === 'l') {
@@ -44,7 +44,7 @@ export const toState = (data: any, oldHue: number) => {
   }
 }
 
-export const isValidHex = (hex: string) => {
+export const isValidHex = (hex: any) => {
   if (hex === 'transparent') {
     return true
   }

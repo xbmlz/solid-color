@@ -1,20 +1,20 @@
 export type HexColor = string
 
-export interface HslColor {
+export type HslColor = {
   h: number
   l: number
   s: number
   a?: number
 }
 
-export interface HsvColor {
+export type HsvColor = {
   h: number
   s: number
   v: number
   a?: number
 }
 
-export interface RgbColor {
+export type RgbColor = {
   r: number
   g: number
   b: number
@@ -23,7 +23,7 @@ export interface RgbColor {
 
 export type Color = HexColor | HslColor | HsvColor | RgbColor
 
-export interface ColorResult {
+export type ColorResult = {
   hex: HexColor
   hsl: HslColor
   hsv: HsvColor
@@ -37,3 +37,5 @@ export type ChangeColor =
   | (RgbColor & { source?: string })
   | { hex: HexColor; source: string }
   | HexColor
+
+export type Direction = 'horizontal' | 'vertical'
