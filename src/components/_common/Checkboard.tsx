@@ -11,7 +11,7 @@ export type CheckboardProps = {
   children?: JSX.Element
 }
 
-export default function Checkboard(_props: CheckboardProps) {
+export function Checkboard(_props: CheckboardProps) {
   const props = mergeProps(
     {
       white: 'transparent',
@@ -47,6 +47,7 @@ export default function Checkboard(_props: CheckboardProps) {
   // )
   // 判断children是否是一个有效的元素
   return props.children ? (
+    // clone
     <div style={styles().grid}>{props.children}</div>
   ) : (
     <div style={styles().grid} />

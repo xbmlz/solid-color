@@ -7,6 +7,7 @@ import {
   HslColor,
   AlphaPicker,
   TwitterPikcer,
+  BlockPicker,
 } from '../src'
 
 const App: Component = () => {
@@ -26,6 +27,7 @@ const App: Component = () => {
       <HuePikcer color={color()} onChangeComplete={handleChangeComplete} />
       <AlphaPicker color={color()} onChangeComplete={handleChangeComplete} />
       <TwitterPikcer color={color()} onChangeComplete={handleChangeComplete} />
+      <BlockPicker color={color()} onChangeComplete={handleChangeComplete} />
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
-import Checkboard from './Checkboard'
+import {} from 'solid-js/web'
+import { Checkboard } from './Checkboard'
 import { useColorPicker } from './ColorPicker'
 
 const ENTER = 13
@@ -24,7 +25,6 @@ export const Swatch = (_props: SwatchProps) => {
     _props,
   )
   const { onSwatchHover } = useColorPicker()
-
   const transparent = props.color === 'transparent'
   const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
   const [focused, setFocused] = createSignal(false)

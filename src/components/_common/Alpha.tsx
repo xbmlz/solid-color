@@ -2,8 +2,8 @@ import { merge } from 'lodash-es'
 import { createEffect, createSignal, JSX, mergeProps, onCleanup } from 'solid-js'
 import { HslColor, RgbColor } from '../../types'
 import AlphaPointer from '../alpha/AlphaPointer'
-import Checkboard from './Checkboard'
 import * as alpha from '../../helpers/alpha'
+import { Checkboard } from './Checkboard'
 
 export interface AlphaProps {
   renderers: any
