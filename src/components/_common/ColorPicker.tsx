@@ -1,5 +1,6 @@
 import {
   Accessor,
+  Component,
   Context,
   createContext,
   createEffect,
@@ -16,6 +17,7 @@ import { debounce } from 'lodash-es'
 export interface ColorPickerContextType {
   colors: Accessor<ColorResult>
   changeColor: (color: ChangeColor, event?: Event) => void
+  onSwatchHover?: (color: ChangeColor, event: Event) => void
 }
 
 export const ColorPickerContext = createContext<ColorPickerContextType | undefined>(undefined)
@@ -26,6 +28,7 @@ export interface ColorPickerProps {
   color?: Color
   onChange?: (color: ColorResult, event?: Event) => void
   onChangeComplete?: (color: ColorResult) => void
+  onSwatchHover?: (color: ColorResult, event: Event) => void
 }
 
 export function ColorPickerProvider(_props: ColorPickerProps) {
@@ -60,16 +63,24 @@ export function ColorPickerProvider(_props: ColorPickerProps) {
     }
   }
 
+  const handleSwatchHover = (data: ChangeColor, event: Event) => {
+    const isValidColor = color.simpleCheckForValidColor(data)
+    if (isValidColor) {
+      const newColors = color.toState(
+        data,
+        (typeof data !== 'string' && 'h' in data ? data.h : undefined) || colors().oldHue,
+      )
+      props.onSwatchHover && props.onSwatchHover(newColors, event)
+    }
+  }
+
   const store = {
     colors,
     changeColor,
+    onSwatchHover: props.onSwatchHover ? handleSwatchHover : undefined,
   }
 
-  return (
-    <ColorPickerContext.Provider value={store}>
-      {props.children}
-    </ColorPickerContext.Provider>
-  )
+  return <ColorPickerContext.Provider value={store}>{props.children}</ColorPickerContext.Provider>
 }
 
 export function useColorPicker() {
