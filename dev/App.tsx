@@ -1,6 +1,13 @@
 import { Component, createSignal } from 'solid-js'
 import styles from './App.module.css'
-import { MaterialPikcer, HuePikcer, ColorResult, HslColor, AlphaPicker, TwitterPikcer } from '../src'
+import {
+  MaterialPikcer,
+  HuePikcer,
+  ColorResult,
+  HslColor,
+  AlphaPicker,
+  TwitterPikcer,
+} from '../src'
 
 const App: Component = () => {
   const [color, setColor] = createSignal<HslColor>({

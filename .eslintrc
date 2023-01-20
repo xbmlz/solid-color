@@ -1,0 +1,26 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "no-only-tests", "solid"],
+  "ignorePatterns": [
+    "scripts/**",
+    "**/node_modules/**",
+    "dist/**",
+    "dev/**",
+    "**/*/__snapshots__/**"
+  ],
+  "rules": {
+    "no-unused-vars": [
+      "off",
+      {
+        "argsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "no-console": "warn",
+    "no-debugger": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "no-only-tests/no-only-tests": "warn"
+  }
+}

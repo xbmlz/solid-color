@@ -1,6 +1,5 @@
 import {
   Accessor,
-  Component,
   Context,
   createContext,
   createEffect,

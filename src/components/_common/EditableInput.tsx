@@ -52,7 +52,6 @@ export function EditableInput(_props: EditableInputProps) {
   const setUpdatedValue = (value: any, e: Event) => {
     const onChangeValue = props.label ? getValueObjectWithLabel(value) : value
     props.onChange && props.onChange(onChangeValue, e)
-    console.log('setUpdatedValue', props.label)
     setState({ value, blurValue: value })
   }
 
@@ -60,12 +59,10 @@ export function EditableInput(_props: EditableInputProps) {
     if (state().blurValue) {
       setState({ value: state().blurValue, blurValue: '' })
     }
-    console.log('handleBlur')
   }
 
   const handleChange = (e: Event) => {
     setUpdatedValue((e.target as HTMLInputElement).value, e)
-    console.log('handleChange')
   }
 
   const handleKeyDown = (e: KeyboardEvent) => {

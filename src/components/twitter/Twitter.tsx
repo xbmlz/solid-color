@@ -121,7 +121,6 @@ export const Twitter = (_props: TwitterPickerProps) => {
   })
 
   const handleChange = (hexcode: string, e: Event) => {
-    console.log('handleChange', hexcode)
     color.isValidHex(hexcode) &&
       changeColor(
         {

@@ -1,5 +1,5 @@
 import { useColorPicker, withColorPicker } from '../_common/ColorPicker'
-import { ChangeColor, Direction } from '../../types'
+import { ChangeColor } from '../../types'
 import { Hue } from '../_common'
 import HuePointer from './HuePointer'
 import { JSX, mergeProps } from 'solid-js'
