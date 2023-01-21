@@ -1,3 +1,4 @@
+import { merge } from 'lodash-es'
 import { createEffect, createSignal, JSX, mergeProps, Show } from 'solid-js'
 
 export interface EditableInputProps {
@@ -80,13 +81,16 @@ export function EditableInput(_props: EditableInputProps) {
       blurValue: '',
     })
     // update input styles
-    setStyles({
-      wrap: {
-        position: 'relative',
-      },
-      input: props.styles && props.styles.input ? props.styles.input : {},
-      label: props.styles && props.styles.label ? props.styles.label : {},
-    })
+    setStyles(
+      merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
+        {
+          wrap: {
+            position: 'relative',
+          },
+        },
+        props.styles,
+      ),
+    )
   })
 
   return (

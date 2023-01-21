@@ -10,6 +10,7 @@ import {
   BlockPicker,
   SliderPikcer,
   GithubPicker,
+  CompactPicker,
 } from '../src'
 
 const App: Component = () => {
@@ -32,6 +33,7 @@ const App: Component = () => {
       <BlockPicker color={color()} onChangeComplete={handleChangeComplete} />
       <SliderPikcer color={color()} onChangeComplete={handleChangeComplete} />
       <GithubPicker color={color()} onChangeComplete={handleChangeComplete} />
+      <CompactPicker color={color()} onChangeComplete={handleChangeComplete} />
     </div>
   )
 }
