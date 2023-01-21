@@ -5,10 +5,11 @@ import HuePointer from '../hue/HuePointer'
 
 interface HueProps {
   children?: JSX.Element
-  direction: string
+  direction?: string
   radius?: number
   shadow?: string
   hsl: HslColor
+  styles?: Record<string, JSX.CSSProperties>
   pointer: typeof HuePointer
   onChange?: (data: HslColor, e: MouseEvent) => void
 }

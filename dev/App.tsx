@@ -8,6 +8,7 @@ import {
   AlphaPicker,
   TwitterPikcer,
   BlockPicker,
+  SliderPikcer,
 } from '../src'
 
 const App: Component = () => {
@@ -28,6 +29,7 @@ const App: Component = () => {
       <AlphaPicker color={color()} onChangeComplete={handleChangeComplete} />
       <TwitterPikcer color={color()} onChangeComplete={handleChangeComplete} />
       <BlockPicker color={color()} onChangeComplete={handleChangeComplete} />
+      <SliderPikcer color={color()} onChangeComplete={handleChangeComplete} />
     </div>
   )
 }
