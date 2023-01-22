@@ -15,7 +15,7 @@ export type SwatchProps = {
   focusStyle?: JSX.CSSProperties
 }
 
-export const Swatch = (_props: SwatchProps) => {
+export function Swatch(_props: SwatchProps) {
   const props = mergeProps(
     {
       onClick: () => {},
