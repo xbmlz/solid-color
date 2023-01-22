@@ -9,7 +9,7 @@ interface HueProps {
   shadow?: string
   hsl: HslColor
   styles?: Record<string, JSX.CSSProperties>
-  pointer: <T extends object>(props: T) => JSX.Element
+  pointer?: <T extends object>(props: T) => JSX.Element
   onChange?: (data: HslColor, e: MouseEvent) => void
 }
 

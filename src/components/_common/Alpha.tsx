@@ -1,7 +1,6 @@
 import { merge } from 'lodash-es'
 import { createEffect, createSignal, JSX, mergeProps, onCleanup } from 'solid-js'
 import { HslColor, RgbColor } from '../../types'
-import AlphaPointer from '../alpha/AlphaPointer'
 import * as alpha from '../../helpers/alpha'
 import { Checkboard } from './Checkboard'
 
@@ -14,7 +13,7 @@ export interface AlphaProps {
   radius?: number
   shadow?: string
   styles?: Record<string, JSX.CSSProperties>
-  pointer: typeof AlphaPointer
+  pointer?: <T extends object>(props: T) => JSX.Element
   onChange: (data: any, e: Event) => void
 }
 

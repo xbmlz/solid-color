@@ -1,13 +1,15 @@
 import { merge } from 'lodash-es'
-import { createEffect, createSignal, JSX, mergeProps, Show } from 'solid-js'
+import { createEffect, createSignal, JSX, mergeProps, onCleanup, Show } from 'solid-js'
 
 export interface EditableInputProps {
+  styles: Record<string, JSX.CSSProperties>
+  value?: string | number
   label?: string
   hideLabel?: boolean
   placeholder?: string
   arrowOffset?: number
-  styles: Record<string, JSX.CSSProperties>
-  value?: string | number
+  dragLabel?: boolean
+  dragMax?: number
   onChange?: (value: any, e: Event) => void
 }
 
@@ -66,6 +68,33 @@ export function EditableInput(_props: EditableInputProps) {
     setUpdatedValue((e.target as HTMLInputElement).value, e)
   }
 
+  const handleDrag = (e: MouseEvent) => {
+    if (props.dragLabel) {
+      const newValue = Math.round(+props.value! + e.movementX)
+      if (newValue >= 0 && newValue <= props.dragMax!) {
+        props.onChange && props.onChange(getValueObjectWithLabel(String(newValue)), e)
+      }
+    }
+  }
+
+  const unbindEventListeners = () => {
+    window.removeEventListener('mousemove', handleDrag)
+    window.removeEventListener('mouseup', handleMouseUp)
+  }
+
+  const handleMouseUp = () => {
+    unbindEventListeners()
+  }
+
+  const handleMouseDown = (e: MouseEvent) => {
+    if (props.dragLabel) {
+      e.preventDefault()
+      handleDrag(e)
+      window.addEventListener('mousemove', handleDrag)
+      window.addEventListener('mouseup', handleMouseUp)
+    }
+  }
+
   const handleKeyDown = (e: KeyboardEvent) => {
     const value = getNumberValue((e.target as HTMLInputElement).value)
     if (!isNaN(value) && isValidKeyCode(e.keyCode)) {
@@ -93,6 +122,8 @@ export function EditableInput(_props: EditableInputProps) {
     )
   })
 
+  onCleanup(() => unbindEventListeners())
+
   return (
     <div style={styles().wrap}>
       <input
@@ -108,7 +139,9 @@ export function EditableInput(_props: EditableInputProps) {
         onInput={handleChange}
       />
       <Show when={props.label && !props.hideLabel}>
-        <label style={styles().label}>{props.label}</label>
+        <label style={styles().label} onMouseDown={handleMouseDown}>
+          {props.label}
+        </label>
       </Show>
     </div>
   )
