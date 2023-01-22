@@ -16,6 +16,7 @@ import {
   GooglePicker,
   ChromePicker,
   SketchPikcer,
+  PhotoshopPicker,
 } from '../src'
 
 const App: Component = () => {
@@ -30,7 +31,7 @@ const App: Component = () => {
     setColor(color.hsl)
   }
   return (
-    <div class={styles.App}>
+    <div>
       <MaterialPikcer color={color()} onChangeComplete={handleChangeComplete} />
       <HuePikcer color={color()} onChangeComplete={handleChangeComplete} />
       <AlphaPicker color={color()} onChangeComplete={handleChangeComplete} />
@@ -44,6 +45,7 @@ const App: Component = () => {
       <GooglePicker color={color()} onChangeComplete={handleChangeComplete} />
       <ChromePicker color={color()} onChangeComplete={handleChangeComplete} />
       <SketchPikcer color={color()} onChangeComplete={handleChangeComplete} />
+      <PhotoshopPicker color={color()} onChangeComplete={handleChangeComplete} />
     </div>
   )
 }
