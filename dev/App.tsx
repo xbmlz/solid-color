@@ -12,6 +12,8 @@ import {
   GithubPicker,
   CompactPicker,
   SwatchesPikcer,
+  CirclePicker,
+  GooglePicker,
 } from '../src'
 
 const App: Component = () => {
@@ -36,6 +38,8 @@ const App: Component = () => {
       <GithubPicker color={color()} onChangeComplete={handleChangeComplete} />
       <CompactPicker color={color()} onChangeComplete={handleChangeComplete} />
       <SwatchesPikcer color={color()} onChangeComplete={handleChangeComplete} />
+      <CirclePicker color={color()} onChangeComplete={handleChangeComplete} />
+      <GooglePicker color={color()} onChangeComplete={handleChangeComplete} />
     </div>
   )
 }

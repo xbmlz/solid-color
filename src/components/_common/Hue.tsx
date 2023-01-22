@@ -1,16 +1,15 @@
 import { createEffect, createSignal, JSX, mergeProps, onCleanup } from 'solid-js'
 import { calculateChange } from '../../helpers/hue'
 import { HslColor } from '../../types'
-import HuePointer from '../hue/HuePointer'
 
 interface HueProps {
   children?: JSX.Element
   direction?: string
-  radius?: number
+  radius?: number | string
   shadow?: string
   hsl: HslColor
   styles?: Record<string, JSX.CSSProperties>
-  pointer: typeof HuePointer
+  pointer: <T extends object>(props: T) => JSX.Element
   onChange?: (data: HslColor, e: MouseEvent) => void
 }
 
@@ -29,14 +28,14 @@ export function Hue(_props: HueProps) {
       hue: {
         position: 'absolute',
         inset: '0px',
-        'border-radius': props.radius,
+        'border-radius': typeof props.radius === 'string' ? props.radius : `${props.radius}px`,
         'box-shadow': props.shadow,
       },
       container: {
         padding: '0 2px',
         position: 'relative',
         height: '100%',
-        'border-radius': props.radius,
+        'border-radius': typeof props.radius === 'string' ? props.radius : `${props.radius}px`,
       },
       pointer: {
         position: 'absolute',
