@@ -1,9 +1,9 @@
-import { JSX, mergeProps } from 'solid-js'
+import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
 import * as color from '../../helpers/color'
 import { ChangeColor, HexColor, HslColor, HsvColor, RgbColor } from '../../types'
 import { EditableInput } from '../_common'
 
-type Props = {
+interface Props {
   rgb: RgbColor
   hsl: HslColor
   hex: HexColor
@@ -14,13 +14,23 @@ type Props = {
 export default function GoogleFields(_props: Props) {
   const props = mergeProps({}, _props)
 
-  const rgbValue = `${props.rgb.r}, ${props.rgb.g}, ${props.rgb.b}`
-  const hslValue = `${Math.round(props.hsl.h)}°, ${Math.round(props.hsl.s * 100)}%, ${Math.round(
-    props.hsl.l * 100,
-  )}%`
-  const hsvValue = `${Math.round(props.hsv.h)}°, ${Math.round(props.hsv.s * 100)}%, ${Math.round(
-    props.hsv.v * 100,
-  )}%`
+  const [rgbValue, setRgbValue] = createSignal('')
+  const [hslValue, setHslValue] = createSignal('')
+  const [hsvValue, setHsvValue] = createSignal('')
+
+  createEffect(() => {
+    setRgbValue(`${props.rgb.r}, ${props.rgb.g}, ${props.rgb.b}`)
+    setHslValue(
+      `${Math.round(props.hsl.h)}°, ${Math.round(props.hsl.s * 100)}%, ${Math.round(
+        props.hsl.l * 100,
+      )}%`,
+    )
+    setHsvValue(
+      `${Math.round(props.hsv.h)}°, ${Math.round(props.hsv.s * 100)}%, ${Math.round(
+        props.hsv.v * 100,
+      )}%`,
+    )
+  }, [props.rgb, props.hsl, props.hsv])
   const handleChange = (data: any, e: Event) => {
     if (data.hex) {
       color.isValidHex(data.hex) &&
@@ -185,7 +195,7 @@ export default function GoogleFields(_props: Props) {
             <EditableInput
               styles={{ input: styles.input2, label: styles.label2 }}
               label="rgb"
-              value={rgbValue}
+              value={rgbValue()}
               onChange={handleChange}
             />
           </div>
@@ -193,7 +203,7 @@ export default function GoogleFields(_props: Props) {
             <EditableInput
               styles={{ input: styles.input2, label: styles.label2 }}
               label="hsv"
-              value={hsvValue}
+              value={hsvValue()}
               onChange={handleChange}
             />
           </div>
@@ -201,7 +211,7 @@ export default function GoogleFields(_props: Props) {
             <EditableInput
               styles={{ input: styles.input2, label: styles.label2 }}
               label="hsl"
-              value={hslValue}
+              value={hslValue()}
               onChange={handleChange}
             />
           </div>
