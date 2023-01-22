@@ -14,6 +14,7 @@ import {
   SwatchesPikcer,
   CirclePicker,
   GooglePicker,
+  ChromePicker,
 } from '../src'
 
 const App: Component = () => {
@@ -40,6 +41,7 @@ const App: Component = () => {
       <SwatchesPikcer color={color()} onChangeComplete={handleChangeComplete} />
       <CirclePicker color={color()} onChangeComplete={handleChangeComplete} />
       <GooglePicker color={color()} onChangeComplete={handleChangeComplete} />
+      <ChromePicker color={color()} onChangeComplete={handleChangeComplete} />
     </div>
   )
 }
