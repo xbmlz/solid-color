@@ -13,9 +13,10 @@
     "noEmit": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "types": [],
+    "types": ["@testing-library/jest-dom"],
     "baseUrl": "."
   },
-  "include": ["src"],
+  "types": ["vitest"],
+  "include": ["src", "test"],
   "exclude": ["node_modules", "dist"]
 }

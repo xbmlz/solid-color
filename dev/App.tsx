@@ -1,4 +1,4 @@
-import { Component, createSignal } from 'solid-js'
+import { Component, createEffect, createSignal, JSX } from 'solid-js'
 import styles from './App.module.css'
 import {
   MaterialPikcer,
@@ -27,11 +27,24 @@ const App: Component = () => {
     a: 1,
   })
 
+  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
+
+  createEffect(() => {
+    setStyles({
+      container: {
+        display: 'flex',
+        'flex-direction': 'column',
+        height: '100vh',
+        'background-color': `hsl(${color().h}, ${color().s * 100}%, ${color().l * 100}%)`,
+      },
+    })
+  })
+
   const handleChangeComplete = (color: ColorResult) => {
     setColor(color.hsl)
   }
   return (
-    <div>
+    <div style={styles().container}>
       <MaterialPikcer color={color()} onChangeComplete={handleChangeComplete} />
       <HuePikcer color={color()} onChangeComplete={handleChangeComplete} />
       <AlphaPicker color={color()} onChangeComplete={handleChangeComplete} />

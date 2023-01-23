@@ -1,0 +1,31 @@
+// Vitest Snapshot v1
+
+exports[`<Alpha /> > should render correctly 1`] = `
+<div>
+  <div
+    style="position: absolute; inset: 0px;"
+  >
+    <div
+      style="position: absolute; inset: 0px; overflow: hidden;"
+    >
+      <div
+        style="position: absolute; inset: 0px; background: url(null) left;"
+      />
+    </div>
+    <div
+      style="position: absolute; inset: 0px;"
+    />
+    <div
+      style="position: relative; height: 100%; margin: 0px 3px;"
+    >
+      <div
+        style="position: absolute; left: 100%;"
+      >
+        <div
+          style="width: 4px; border-radius: 1px; height: 8px; box-shadow: 0 0 2px rgba(0, 0, 0, .6); background: rgb(255, 255, 255); margin-top: 1px; transform: translateX(-2px);"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -5,16 +5,16 @@ import * as alpha from '../../helpers/alpha'
 import { Checkboard } from './Checkboard'
 
 export interface AlphaProps {
-  renderers: any
-  direction: string
   rgb: RgbColor
   hsl: HslColor
+  renderers?: any
+  direction?: string
   a?: number
   radius?: number
   shadow?: string
   styles?: Record<string, JSX.CSSProperties>
   pointer?: <T extends object>(props: T) => JSX.Element
-  onChange: (data: any, e: Event) => void
+  onChange?: (data: any, e: Event) => void
 }
 
 export const Alpha = (_props: AlphaProps) => {
