@@ -6,7 +6,7 @@ export type AlphaPickerProps = {
   width?: string | number
   height?: string | number
   direction?: string
-  pointer?: typeof AlphaPointer
+  pointer: <T extends object>(props: T) => JSX.Element
   renderers?: any
   className?: string
   style?: Record<string, JSX.CSSProperties>
@@ -25,8 +25,6 @@ export function AlphaPicker(_props: AlphaPickerProps) {
   )
 
   const { colors: currentColors, changeColor } = useColorPicker()
-
-  // const { hsl, rgb } = currentColors
 
   const styles: Record<string, JSX.CSSProperties> = {
     picker: {
