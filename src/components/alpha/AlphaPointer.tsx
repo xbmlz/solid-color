@@ -1,7 +1,7 @@
 import { JSX, mergeProps } from 'solid-js'
 
 interface Props {
-  direction: string
+  direction?: string
 }
 
 export default function AlphaPointer(_props: Props) {
