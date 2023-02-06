@@ -4,12 +4,25 @@
 
 # solid-color
 
-[![pnpm](https://img.shields.io/badge/maintained%20with-pnpm-cc00ff.svg?style=for-the-badge&logo=pnpm)](https://pnpm.io/)
+[![Npm Version](https://img.shields.io/npm/v/solid-color)](https://www.npmjs.com/package/solid-color)
+[![License](https://img.shields.io/npm/l/solid-color)](https://npm-stat.com/charts.html?package=solid-color)
+[![Downloads](https://img.shields.io/npm/dm/solid-color)](LICENSE)
 
-🎨 Color Pickers from Sketch, Photoshop, Chrome, Github, Twitter & more for SolidJS
+🎨 Color Pickers for Sketch, Photoshop, Chrome & more with SolidJS.
 
 
-## Quick start
+## Features
+
+- 🔨 13 different pickers - Start building with Sketch, Photoshop, Chrome and many more
+- 🎨 100% customizable - Change the colors, styles, layout and more
+- 📦 Tiny - Only 25kb gzipped
+- 🚀 Fast - Built with SolidJS
+- 📱 Mobile friendly - Works on touch devices
+- 🌈 Accessible - Supports keyboard navigation
+- 📖 Typescript - Written in Typescript with full type definitions
+- 📦 Tree-shakeable - Only import what you need
+
+## Installation
 
 Install it:
 
@@ -25,4 +38,8 @@ Use it:
 
 ```tsx
 import { TwitterPicker } from 'solid-color'
+
+function App() {
+  return <TwitterPicker />;
+}
 ```

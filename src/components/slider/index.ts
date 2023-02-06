@@ -1,2 +1,2 @@
-export { default as SliderPikcer } from './Slider'
+export { default as SliderPicker } from './Slider'
 export type { SliderPickerProps } from './Slider'

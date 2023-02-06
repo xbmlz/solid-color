@@ -1,2 +1,2 @@
-export { default as SwatchesPikcer } from './Swatches'
+export { default as SwatchesPicker } from './Swatches'
 export type { SwatchesPickerProps } from './Swatches'

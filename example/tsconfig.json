@@ -3,5 +3,6 @@
   "compilerOptions": {
     "types": ["vite/client"]
   },
-  "include": ["./**/*"]
+  "include": ["./**/*"],
+  "exclude": ["dist"]
 }
