@@ -12,7 +12,7 @@
 
 ## Demo
 
-[Live Demo](https://solid-color.netlify.app/)
+[Live Demo](https://solid-color-demo.netlify.app/)
 
 ![](https://cdn.jsdelivr.net/gh/xbmlz/static@main/img/202302061325674.jpg)
 
