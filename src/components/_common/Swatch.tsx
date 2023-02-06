@@ -1,5 +1,4 @@
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
-import {} from 'solid-js/web'
+import { createSignal, JSX, mergeProps } from 'solid-js'
 import { Checkboard } from './Checkboard'
 import { useColorPicker } from './ColorPicker'
 
@@ -26,7 +25,6 @@ export function Swatch(_props: SwatchProps) {
   )
   const { onSwatchHover } = useColorPicker()
   const transparent = props.color === 'transparent'
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
   const [focused, setFocused] = createSignal(false)
   const handleFocus = () => setFocused(true)
   const handleBlur = () => setFocused(false)
@@ -36,8 +34,8 @@ export function Swatch(_props: SwatchProps) {
   }
   const handleKeyDown = (e: KeyboardEvent) => e.keyCode === ENTER && props.onClick(props.color, e)
 
-  createEffect(() => {
-    setStyles({
+  const styles = () => {
+    return {
       swatch: {
         background: props.color,
         height: '100%',
@@ -48,8 +46,8 @@ export function Swatch(_props: SwatchProps) {
         ...props.styles,
         ...(focused() ? props.focusStyle : {}),
       },
-    })
-  })
+    } as Record<string, JSX.CSSProperties>
+  }
 
   return (
     <div

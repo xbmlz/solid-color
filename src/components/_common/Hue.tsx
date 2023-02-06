@@ -1,4 +1,4 @@
-import { createEffect, createSignal, JSX, mergeProps, onCleanup } from 'solid-js'
+import { JSX, mergeProps, onCleanup } from 'solid-js'
 import { calculateChange } from '../../helpers/hue'
 import { HslColor } from '../../types'
 
@@ -21,10 +21,10 @@ export function Hue(_props: HueProps) {
     _props,
   )
 
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
+  let container: HTMLDivElement
 
-  createEffect(() => {
-    setStyles({
+  const styles = () => {
+    return {
       hue: {
         position: 'absolute',
         inset: '0px',
@@ -51,10 +51,8 @@ export function Hue(_props: HueProps) {
         background: '#fff',
         transform: 'translateX(-2px)',
       },
-    })
-  })
-
-  let container: HTMLDivElement
+    } as Record<string, JSX.CSSProperties>
+  }
 
   const handleChange = (e: MouseEvent) => {
     const change = calculateChange(e, props.direction, props.hsl, container)

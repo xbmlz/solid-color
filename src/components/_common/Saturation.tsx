@@ -1,5 +1,5 @@
 import { merge } from 'lodash-es'
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { createEffect, JSX, mergeProps } from 'solid-js'
 import { calculateChange } from '../../helpers/saturation'
 import { ChangeColor, HslColor, HsvColor } from '../../types'
 
@@ -49,63 +49,46 @@ export function Saturation(_props: SaturationProps) {
     }
   }
 
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-
-  createEffect(() => {
+  const styles = () => {
     const { hsv, hsl, shadow, radius, styles } = props
-    setStyles(
-      merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
-        {
-          color: {
-            position: 'absolute',
-            inset: '0px',
-            background: `hsl(${hsl.h},100%, 50%)`,
-            'border-radius': radius,
-          },
-          white: {
-            position: 'absolute',
-            inset: '0px',
-            'border-radius': radius,
-          },
-          black: {
-            position: 'absolute',
-            inset: '0px',
-            boxShadow: shadow,
-            'border-radius': radius,
-          },
-          pointer: {
-            position: 'absolute',
-            top: `${-(hsv.v * 100) + 100}%`,
-            left: `${hsv.s * 100}%`,
-            cursor: 'default',
-          },
-          circle: {
-            width: '4px',
-            height: '4px',
-            'box-shadow': `0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3),
-              0 0 1px 2px rgba(0,0,0,.4)`,
-            'border-radius': '50%',
-            cursor: 'hand',
-            transform: 'translate(-2px, -2px)',
-          },
+    return merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
+      {
+        color: {
+          position: 'absolute',
+          inset: '0px',
+          background: `hsl(${hsl.h},100%, 50%)`,
+          'border-radius': radius,
         },
-        styles,
-      ),
+        white: {
+          position: 'absolute',
+          inset: '0px',
+          'border-radius': radius,
+        },
+        black: {
+          position: 'absolute',
+          inset: '0px',
+          boxShadow: shadow,
+          'border-radius': radius,
+        },
+        pointer: {
+          position: 'absolute',
+          top: `${-(hsv.v * 100) + 100}%`,
+          left: `${hsv.s * 100}%`,
+          cursor: 'default',
+        },
+        circle: {
+          width: '4px',
+          height: '4px',
+          'box-shadow': `0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3),
+            0 0 1px 2px rgba(0,0,0,.4)`,
+          'border-radius': '50%',
+          cursor: 'hand',
+          transform: 'translate(-2px, -2px)',
+        },
+      },
+      styles,
     )
-  })
-
-  // const { color, white, black, pointer: stylePointer, circle } = style || {}
-  // let styles: Record<string, JSX.CSSProperties> =
-
-  // if (style) {
-  //   styles = merge(styles, {
-  //     color,
-  //     white,
-  //     black,
-  //     stylePointer,
-  //     circle,
-  //   })
-  // }
+  }
 
   return (
     <div

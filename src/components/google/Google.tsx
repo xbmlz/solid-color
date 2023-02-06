@@ -1,5 +1,5 @@
 import { merge } from 'lodash-es'
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { JSX, mergeProps } from 'solid-js'
 import { Hue, Saturation, useColorPicker, withColorPicker } from '../_common'
 import GoogleFields from './GoogleFields'
 import GooglePointer from './GooglePointer'
@@ -23,72 +23,70 @@ export function Google(_props: GooglePickerProps) {
     _props,
   )
   const { colors, changeColor } = useColorPicker()
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-  createEffect(() => {
+
+  const styles = () => {
     const width = typeof props.width === 'number' ? `${props.width}px` : props.width
-    setStyles(
-      merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
-        {
-          picker: {
-            width,
-            background: '#fff',
-            border: '1px solid #dfe1e5',
-            'box-sizing': 'initial',
-            display: 'flex',
-            'flex-wrap': 'wrap',
-            'border-radius': '8px 8px 0px 0px',
-          },
-          head: {
-            height: '57px',
-            width: '100%',
-            'padding-top': '16px',
-            'padding-bottom': '16px',
-            'padding-left': '16px',
-            'font-size': '20px',
-            'box-sizing': 'border-box',
-            'font-family': 'Roboto-Regular,HelveticaNeue,Arial,sans-serif',
-          },
-          saturation: {
-            width: '70%',
-            padding: '0px',
-            position: 'relative',
-            overflow: 'hidden',
-          },
-          swatch: {
-            width: '30%',
-            height: '228px',
-            padding: '0px',
-            background: `rgba(${colors().rgb.r}, ${colors().rgb.g}, ${colors().rgb.b}, 1)`,
-            position: 'relative',
-            overflow: 'hidden',
-          },
-          body: {
-            margin: 'auto',
-            width: '95%',
-          },
-          controls: {
-            display: 'flex',
-            'box-sizing': 'border-box',
-            height: '52px',
-            'padding-top': '22px',
-          },
-          color: {
-            width: '32px',
-          },
-          hue: {
-            height: '8px',
-            position: 'relative',
-            margin: '0px 16px 0px 16px',
-            width: '100%',
-          },
-          Hue: {
-            'border-radius': '2px',
-          },
+    return merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
+      {
+        picker: {
+          width,
+          background: '#fff',
+          border: '1px solid #dfe1e5',
+          'box-sizing': 'initial',
+          display: 'flex',
+          'flex-wrap': 'wrap',
+          'border-radius': '8px 8px 0px 0px',
         },
-        props.styles,
-      ),
+        head: {
+          height: '57px',
+          width: '100%',
+          'padding-top': '16px',
+          'padding-bottom': '16px',
+          'padding-left': '16px',
+          'font-size': '20px',
+          'box-sizing': 'border-box',
+          'font-family': 'Roboto-Regular,HelveticaNeue,Arial,sans-serif',
+        },
+        saturation: {
+          width: '70%',
+          padding: '0px',
+          position: 'relative',
+          overflow: 'hidden',
+        },
+        swatch: {
+          width: '30%',
+          height: '228px',
+          padding: '0px',
+          background: `rgba(${colors().rgb.r}, ${colors().rgb.g}, ${colors().rgb.b}, 1)`,
+          position: 'relative',
+          overflow: 'hidden',
+        },
+        body: {
+          margin: 'auto',
+          width: '95%',
+        },
+        controls: {
+          display: 'flex',
+          'box-sizing': 'border-box',
+          height: '52px',
+          'padding-top': '22px',
+        },
+        color: {
+          width: '32px',
+        },
+        hue: {
+          height: '8px',
+          position: 'relative',
+          margin: '0px 16px 0px 16px',
+          width: '100%',
+        },
+        Hue: {
+          'border-radius': '2px',
+        },
+      },
+      props.styles,
     )
-  })
+  }
 
   return (
     <div style={styles().picker} class={`google-picker ${props.className}`}>

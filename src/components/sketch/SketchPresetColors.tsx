@@ -1,4 +1,4 @@
-import { createEffect, createSignal, For, JSX, mergeProps } from 'solid-js'
+import { For, JSX, mergeProps } from 'solid-js'
 import { ChangeColor } from '../../types'
 import { Swatch } from '../_common'
 
@@ -10,10 +10,8 @@ interface Props {
 export default function SketchPresetColors(_props: Props) {
   const props = mergeProps({ onClick: () => {} }, _props)
 
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-
-  createEffect(() => {
-    setStyles({
+  const styles = () => {
+    return {
       colors: {
         margin: '0 -10px',
         padding: '10px 0 0 10px',
@@ -31,8 +29,8 @@ export default function SketchPresetColors(_props: Props) {
         'border-radius': '3px',
         'box-shadow': 'inset 0 0 0 1px rgba(0,0,0,.15)',
       },
-    })
-  })
+    } as Record<string, JSX.CSSProperties>
+  }
 
   const handleClick = (hex: string, e: MouseEvent) => {
     props.onClick(

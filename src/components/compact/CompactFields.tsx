@@ -1,4 +1,4 @@
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { JSX, mergeProps } from 'solid-js'
 import { HexColor, RgbColor } from '../../types'
 import { EditableInput } from '../_common'
 
@@ -10,10 +10,9 @@ interface Props {
 
 export default function CompactFields(_props: Props) {
   const props = mergeProps({}, _props)
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-  createEffect(() => {
+  const styles = () => {
     const hex = props.hex
-    setStyles({
+    return {
       fields: {
         display: 'flex',
         'padding-bottom': '6px',
@@ -70,8 +69,8 @@ export default function CompactFields(_props: Props) {
         'font-size': '12px',
         color: '#999',
       },
-    })
-  })
+    } as Record<string, JSX.CSSProperties>
+  }
 
   const handleChange = (data: any, e: Event) => {
     if (data.r || data.g || data.b) {

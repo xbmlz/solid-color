@@ -1,5 +1,5 @@
 import { merge } from 'lodash-es'
-import { createEffect, createSignal, For, JSX, mergeProps } from 'solid-js'
+import { For, JSX, mergeProps } from 'solid-js'
 import { Color } from '../../types'
 import { Raised, useColorPicker, withColorPicker } from '../_common'
 import SwatchesGroup from './SwatchesGroup'
@@ -45,33 +45,29 @@ export function Swatches(_props: SwatchesPickerProps) {
   )
   const { colors: currentColors, changeColor } = useColorPicker()
 
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-
-  createEffect(() => {
+  const styles = () => {
     const width = typeof props.width === 'number' ? `${props.width}px` : props.width
     const height = typeof props.height === 'number' ? `${props.height}px` : props.height
-    setStyles(
-      merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
-        {
-          picker: {
-            width,
-            height,
-          },
-          overflow: {
-            height,
-            'overflow-y': 'scroll',
-          },
-          body: {
-            padding: '16px 0 6px 16px',
-          },
-          clear: {
-            clear: 'both',
-          },
+    return merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
+      {
+        picker: {
+          width,
+          height,
         },
-        props.styles,
-      ),
+        overflow: {
+          height,
+          'overflow-y': 'scroll',
+        },
+        body: {
+          padding: '16px 0 6px 16px',
+        },
+        clear: {
+          clear: 'both',
+        },
+      },
+      props.styles,
     )
-  })
+  }
 
   const handleChange = (data: Color, e: Event) =>
     changeColor({ hex: data as string, source: 'hex' }, e)

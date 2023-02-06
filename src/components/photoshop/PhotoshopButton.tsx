@@ -1,4 +1,4 @@
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { JSX, mergeProps } from 'solid-js'
 
 interface Props {
   onClick?: () => void
@@ -9,9 +9,8 @@ interface Props {
 
 export default function PhotoshopButton(_props: Props) {
   const props = mergeProps({}, _props)
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-  createEffect(() => {
-    setStyles({
+  const styles = () => {
+    return {
       button: {
         'background-image': 'linear-gradient(-180deg, #FFFFFF 0%, #E6E6E6 100%)',
         border: '1px solid #878787',
@@ -25,9 +24,8 @@ export default function PhotoshopButton(_props: Props) {
         'margin-bottom': '10px',
         cursor: 'pointer',
       },
-    })
-  })
-
+    } as Record<string, JSX.CSSProperties>
+  }
   return (
     <div style={styles().button} onClick={props.onClick}>
       {props.label || props.children}

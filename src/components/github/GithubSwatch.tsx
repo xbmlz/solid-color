@@ -1,4 +1,4 @@
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { createSignal, JSX, mergeProps } from 'solid-js'
 import { HexColor } from '../../types'
 import { Swatch } from '../_common'
 
@@ -18,18 +18,17 @@ export function GithubSwatch(_props: Props) {
   }
 
   const [hover, setHover] = createSignal(false)
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
 
-  createEffect(() => {
-    setStyles({
+  const styles = () => {
+    return {
       swatch: {
         width: '25px',
         height: '25px',
         'font-size': '0',
         ...(hover() ? hoverSwatch : {}),
       },
-    })
-  })
+    } as Record<string, JSX.CSSProperties>
+  }
 
   return (
     <div onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}>

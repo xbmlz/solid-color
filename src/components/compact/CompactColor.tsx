@@ -1,4 +1,4 @@
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { JSX, mergeProps } from 'solid-js'
 import { getContrastingColor } from '../../helpers/color'
 import { Swatch } from '../_common'
 
@@ -10,10 +10,9 @@ interface Props {
 
 export default function CompactColor(_props: Props) {
   const props = mergeProps({ onClick: () => {} }, _props)
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-  createEffect(() => {
+  const styles = () => {
     const { color, active } = props
-    setStyles({
+    return {
       color: {
         background: color,
         width: '15px',
@@ -37,8 +36,8 @@ export default function CompactColor(_props: Props) {
         'border-radius': '50%',
         opacity: active ? 1 : 0,
       },
-    })
-  })
+    } as Record<string, JSX.CSSProperties>
+  }
 
   return (
     <Swatch

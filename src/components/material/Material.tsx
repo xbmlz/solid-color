@@ -1,5 +1,5 @@
 import { merge } from 'lodash-es'
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { JSX, mergeProps } from 'solid-js'
 import { ChangeColor, RgbColor } from '../../types'
 import { EditableInput, Raised } from '../_common'
 import { useColorPicker, withColorPicker } from '../_common/ColorPicker'
@@ -13,9 +13,8 @@ export type MaterialPickerProps = {
 export function Material(_props: MaterialPickerProps) {
   const props = mergeProps({ styles: {}, className: '' }, _props)
   const { colors, changeColor } = useColorPicker()
-
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>(
-    merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
+  const styles = () => {
+    return merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
       {
         material: {
           width: '98px',
@@ -79,16 +78,8 @@ export function Material(_props: MaterialPickerProps) {
         },
       },
       props.styles,
-    ),
-  )
-
-  createEffect(() => {
-    // update hexInput border-bottom color
-    setStyles((styles) => {
-      styles.hexInput['border-bottom'] = `2px solid ${colors().hex}`
-      return styles
-    })
-  }, [colors().hex])
+    )
+  }
 
   const handleChange = (data: ChangeColor, e: Event) => {
     if (typeof data !== 'string' && 'hex' in data) {

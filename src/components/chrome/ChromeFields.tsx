@@ -114,11 +114,8 @@ export default function ChromeFields(_props: Props) {
   function hideHighlight(e: MouseEvent) {
     ;(e.currentTarget as HTMLDivElement).style.backgroundColor = 'transparent'
   }
-
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-
-  createEffect(() => {
-    setStyles({
+  const styles = () => {
+    return {
       wrap: {
         'padding-top': '16px',
         display: 'flex',
@@ -184,8 +181,8 @@ export default function ChromeFields(_props: Props) {
         border: '1px transparent solid',
         'border-radius': '5px',
       },
-    })
-  })
+    } as Record<string, JSX.CSSProperties>
+  }
 
   return (
     <div style={styles().wrap} class="flexbox-fix">

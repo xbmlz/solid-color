@@ -1,5 +1,5 @@
 import { merge } from 'lodash-es'
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { JSX, mergeProps } from 'solid-js'
 import { Alpha, Checkboard, Hue, Saturation, useColorPicker, withColorPicker } from '../_common'
 import SketchFields from './SketchFields'
 import SketchPresetColors from './SketchPresetColors'
@@ -42,81 +42,78 @@ export function Sketch(_props: SketchPickerProps) {
   )
   const { colors, changeColor } = useColorPicker()
 
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-
-  createEffect(() => {
+  const styles = () => {
     const width = typeof props.width === 'number' ? `${props.width}px` : props.width
     const rgb = colors().rgb
-    setStyles(
-      merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
-        {
-          picker: {
-            width,
-            padding: '10px 10px 0',
-            'box-sizing': 'initial',
-            background: '#fff',
-            'border-radius': '4px',
-            'box-shadow': '0 0 0 1px rgba(0,0,0,.15), 0 8px 16px rgba(0,0,0,.15)',
-          },
-          saturation: {
-            width: '100%',
-            'padding-bottom': '75%',
-            position: 'relative',
-            overflow: 'hidden',
-          },
-          Saturation: {
-            'border-radius': '3px',
-            'box-shadow': 'inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)',
-          },
-          controls: {
-            display: 'flex',
-          },
-          sliders: {
-            padding: '4px 0',
-            flex: '1',
-          },
-          color: {
-            width: '24px',
-            height: props.disableAlpha ? '10px' : '24px',
-            position: 'relative',
-            'margin-top': '4px',
-            'margin-left': '4px',
-            'border-radius': '3px',
-          },
-          activeColor: {
-            position: 'absolute',
-            inset: '0px',
-            'border-radius': '2px',
-            background: `rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`,
-            'box-shadow': 'inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)',
-          },
-          hue: {
-            position: 'relative',
-            height: '10px',
-            overflow: 'hidden',
-          },
-          Hue: {
-            'border-radius': '2px',
-            'box-shadow': 'inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)',
-          },
-
-          alpha: {
-            position: 'relative',
-            height: '10px',
-            'margin-top': '4px',
-            overflow: 'hidden',
-            display: props.disableAlpha ? 'none' : undefined,
-          },
-          Alpha: {
-            'border-radius': '2px',
-            'box-shadow': 'inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)',
-          },
-          ...props.styles,
+    return merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
+      {
+        picker: {
+          width,
+          padding: '10px 10px 0',
+          'box-sizing': 'initial',
+          background: '#fff',
+          'border-radius': '4px',
+          'box-shadow': '0 0 0 1px rgba(0,0,0,.15), 0 8px 16px rgba(0,0,0,.15)',
         },
-        props.styles,
-      ),
+        saturation: {
+          width: '100%',
+          'padding-bottom': '75%',
+          position: 'relative',
+          overflow: 'hidden',
+        },
+        Saturation: {
+          'border-radius': '3px',
+          'box-shadow': 'inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)',
+        },
+        controls: {
+          display: 'flex',
+        },
+        sliders: {
+          padding: '4px 0',
+          flex: '1',
+        },
+        color: {
+          width: '24px',
+          height: props.disableAlpha ? '10px' : '24px',
+          position: 'relative',
+          'margin-top': '4px',
+          'margin-left': '4px',
+          'border-radius': '3px',
+        },
+        activeColor: {
+          position: 'absolute',
+          inset: '0px',
+          'border-radius': '2px',
+          background: `rgba(${rgb.r},${rgb.g},${rgb.b},${rgb.a})`,
+          'box-shadow': 'inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)',
+        },
+        hue: {
+          position: 'relative',
+          height: '10px',
+          overflow: 'hidden',
+        },
+        Hue: {
+          'border-radius': '2px',
+          'box-shadow': 'inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)',
+        },
+
+        alpha: {
+          position: 'relative',
+          height: '10px',
+          'margin-top': '4px',
+          overflow: 'hidden',
+          display: props.disableAlpha ? 'none' : undefined,
+        },
+        Alpha: {
+          'border-radius': '2px',
+          'box-shadow': 'inset 0 0 0 1px rgba(0,0,0,.15), inset 0 0 4px rgba(0,0,0,.25)',
+        },
+        ...props.styles,
+      },
+      props.styles,
     )
-  })
+  }
+
   return (
     <div style={styles().picker} class={`sketch-picker ${props.className}`}>
       <div style={styles().saturation}>

@@ -1,5 +1,5 @@
 import { merge } from 'lodash-es'
-import { createEffect, createSignal, For, JSX, mergeProps } from 'solid-js'
+import { For, JSX, mergeProps } from 'solid-js'
 import { HexColor } from '../../types'
 import { useColorPicker, withColorPicker } from '../_common'
 import CircleSwatch from './CircleSwatch'
@@ -46,25 +46,21 @@ export function Circle(_props: CirclePickerProps) {
   )
   const { colors: currentColors, changeColor } = useColorPicker()
 
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-
-  createEffect(() => {
+  const styles = () => {
     const { width, circleSpacing, styles } = props
-    setStyles(
-      merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
-        {
-          card: {
-            width: `${width}px`,
-            display: 'flex',
-            'flex-wrap': 'wrap',
-            'margin-right': `${-circleSpacing}px`,
-            'margin-bottom': `${-circleSpacing}px`,
-          },
+    return merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
+      {
+        card: {
+          width: `${width}px`,
+          display: 'flex',
+          'flex-wrap': 'wrap',
+          'margin-right': `${-circleSpacing}px`,
+          'margin-bottom': `${-circleSpacing}px`,
         },
-        styles,
-      ),
+      },
+      styles,
     )
-  })
+  }
 
   const handleChange = (hexCode: HexColor, e: Event) =>
     changeColor({ hex: hexCode, source: 'hex' }, e)

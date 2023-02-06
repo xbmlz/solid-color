@@ -1,4 +1,4 @@
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { JSX, mergeProps } from 'solid-js'
 import { RgbColor } from '../../types'
 
 interface Props {
@@ -9,11 +9,9 @@ interface Props {
 export default function PhotoshopPreviews(_props: Props) {
   const props = mergeProps({}, _props)
 
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-
-  createEffect(() => {
+  const styles = () => {
     const { rgb, currentColor } = props
-    setStyles({
+    return {
       swatches: {
         border: '1px solid #B3B3B3',
         'border-bottom': '1px solid #F0F0F0',
@@ -35,8 +33,8 @@ export default function PhotoshopPreviews(_props: Props) {
         color: '#000',
         'text-align': 'center',
       },
-    })
-  })
+    } as Record<string, JSX.CSSProperties>
+  }
 
   return (
     <div>

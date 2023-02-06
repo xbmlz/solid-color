@@ -30,8 +30,6 @@ export function EditableInput(_props: EditableInputProps) {
 
   let inputRef: HTMLInputElement
 
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-
   const inputId = `sc-editable-input-${Math.random().toString().slice(2, 5)}`
 
   const [state, setState] = createSignal<EditableInputState>({
@@ -109,18 +107,18 @@ export function EditableInput(_props: EditableInputProps) {
       value: String(props.value).toUpperCase(),
       blurValue: '',
     })
-    // update input styles
-    setStyles(
-      merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
-        {
-          wrap: {
-            position: 'relative',
-          },
-        },
-        props.styles,
-      ),
-    )
   })
+
+  const styles = () => {
+    return merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
+      {
+        wrap: {
+          position: 'relative',
+        },
+      },
+      props.styles,
+    )
+  }
 
   onCleanup(() => unbindEventListeners())
 

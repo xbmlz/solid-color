@@ -2,7 +2,7 @@ import * as color from '../../helpers/color'
 import { HexColor } from '../../types'
 import { Checkboard, EditableInput, useColorPicker, withColorPicker } from '../_common'
 import BlockSwatches from './BlockSwatches'
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { JSX, mergeProps } from 'solid-js'
 import { merge } from 'lodash-es'
 
 export type BlockPickerProps = {
@@ -48,67 +48,63 @@ export const Block = (_props: BlockPickerProps) => {
       )
   }
 
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-
-  createEffect(() => {
+  const styles = () => {
     const width = typeof props.width === 'number' ? `${props.width}px` : props.width
     const { triangle, styles } = props
-    setStyles(
-      merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
-        {
-          card: {
-            width,
-            background: '#fff',
-            'box-shadow': '0 1px rgba(0,0,0,.1)',
-            'border-radius': '6px',
-            position: 'relative',
-          },
-          head: {
-            height: '110px',
-            background: currentColors().hex,
-            'border-radius': '6px 6px 0 0',
-            display: 'flex',
-            'align-items': 'center',
-            'justify-content': 'center',
-            position: 'relative',
-          },
-          body: {
-            padding: '10px',
-          },
-          label: {
-            'font-size': '18px',
-            color: color.getContrastingColor(currentColors().hex),
-            position: 'relative',
-          },
-          triangle: {
-            width: '0px',
-            height: '0px',
-            'border-style': 'solid',
-            'border-width': '0 10px 10px 10px',
-            'border-color': `transparent transparent ${currentColors().hex} transparent`,
-            position: 'absolute',
-            top: '-10px',
-            left: '50%',
-            'margin-left': '-10px',
-            display: triangle === 'hide' ? 'none' : undefined,
-          },
-          input: {
-            width: '100%',
-            'font-size': '12px',
-            color: '#666',
-            border: '0px',
-            outline: 'none',
-            height: '22px',
-            'box-shadow': 'inset 0 0 0 1px #ddd',
-            'border-radius': '4px',
-            padding: '0 7px',
-            'box-sizing': 'border-box',
-          },
+    return merge<Record<string, JSX.CSSProperties>, Record<string, JSX.CSSProperties>>(
+      {
+        card: {
+          width,
+          background: '#fff',
+          'box-shadow': '0 1px rgba(0,0,0,.1)',
+          'border-radius': '6px',
+          position: 'relative',
         },
-        styles,
-      ),
+        head: {
+          height: '110px',
+          background: currentColors().hex,
+          'border-radius': '6px 6px 0 0',
+          display: 'flex',
+          'align-items': 'center',
+          'justify-content': 'center',
+          position: 'relative',
+        },
+        body: {
+          padding: '10px',
+        },
+        label: {
+          'font-size': '18px',
+          color: color.getContrastingColor(currentColors().hex),
+          position: 'relative',
+        },
+        triangle: {
+          width: '0px',
+          height: '0px',
+          'border-style': 'solid',
+          'border-width': '0 10px 10px 10px',
+          'border-color': `transparent transparent ${currentColors().hex} transparent`,
+          position: 'absolute',
+          top: '-10px',
+          left: '50%',
+          'margin-left': '-10px',
+          display: triangle === 'hide' ? 'none' : undefined,
+        },
+        input: {
+          width: '100%',
+          'font-size': '12px',
+          color: '#666',
+          border: '0px',
+          outline: 'none',
+          height: '22px',
+          'box-shadow': 'inset 0 0 0 1px #ddd',
+          'border-radius': '4px',
+          padding: '0 7px',
+          'box-sizing': 'border-box',
+        },
+      },
+      styles,
     )
-  })
+  }
 
   return (
     <div style={styles().card} class={`block-picker ${props.className}`}>

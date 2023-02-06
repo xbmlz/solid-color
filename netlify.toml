@@ -1,0 +1,16 @@
+[build.environment]
+  NODE_VERSION = "16"
+
+[build]
+  publish = "example/dist"
+  command = "pnpm run build && pnpm run example:build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"

@@ -1,5 +1,5 @@
 import * as checkboard from '../../helpers/checkboard'
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { JSX, mergeProps } from 'solid-js'
 
 export type CheckboardProps = {
   size?: number
@@ -22,20 +22,18 @@ export function Checkboard(_props: CheckboardProps) {
     _props,
   )
 
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-
-  createEffect(() => {
+  const styles = () => {
     const { size, white, grey, borderRadius, boxShadow, renderers } = props
-    setStyles({
+    return {
       grid: {
         'border-radius': borderRadius,
         'box-shadow': boxShadow,
         position: 'absolute',
         inset: '0px',
         background: `url(${checkboard.get(white, grey, size, renderers.canvas)}) center left`,
-      },
-    })
-  })
+      } as JSX.CSSProperties,
+    }
+  }
 
   // return isValidElement(children) ? (
   //   React.cloneElement(children, {

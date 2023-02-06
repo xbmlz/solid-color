@@ -1,4 +1,4 @@
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { createSignal, JSX, mergeProps } from 'solid-js'
 import { HexColor } from '../../types'
 import { Swatch } from '../_common'
 
@@ -19,11 +19,11 @@ export const CircleSwatch = (_props: Props) => {
     },
     _props,
   )
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
   const [hover, setHover] = createSignal(false)
-  createEffect(() => {
+
+  const styles = () => {
     const { circleSize, circleSpacing, color, active } = props
-    setStyles({
+    return {
       swatch: {
         width: `${circleSize}px`,
         height: `${circleSize}px`,
@@ -41,8 +41,8 @@ export const CircleSwatch = (_props: Props) => {
         transition: '100ms box-shadow ease',
         transform: hover() ? 'scale(1.2)' : undefined,
       },
-    })
-  })
+    } as Record<string, JSX.CSSProperties>
+  }
 
   return (
     <div onMouseOver={() => setHover(true)} onMouseOut={() => setHover(false)}>

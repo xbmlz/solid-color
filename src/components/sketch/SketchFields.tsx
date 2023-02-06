@@ -1,4 +1,4 @@
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { JSX, mergeProps } from 'solid-js'
 import * as color from '../../helpers/color'
 import { ChangeColor, HexColor, HslColor, RgbColor } from '../../types'
 
@@ -19,9 +19,8 @@ export const SketchFields = (_props: SliderPickerProps) => {
     },
     _props,
   )
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-  createEffect(() => {
-    setStyles({
+  const styles = () => {
+    return {
       fields: {
         display: 'flex',
         'padding-top': '4px',
@@ -54,8 +53,8 @@ export const SketchFields = (_props: SliderPickerProps) => {
         'padding-bottom': '4px',
         'text-transform': 'capitalize',
       },
-    })
-  })
+    } as Record<string, JSX.CSSProperties>
+  }
 
   const handleChange = (data: any, e: Event) => {
     if (typeof data !== 'string' && 'hex' in data) {

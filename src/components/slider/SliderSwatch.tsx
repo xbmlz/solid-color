@@ -1,4 +1,4 @@
-import { createEffect, createSignal, JSX, mergeProps } from 'solid-js'
+import { JSX, mergeProps } from 'solid-js'
 import { HslColor } from '../../types'
 
 interface Props {
@@ -18,11 +18,9 @@ export default function SliderSwatch(_props: Props) {
     _props,
   )
 
-  const [styles, setStyles] = createSignal<Record<string, JSX.CSSProperties>>({})
-
-  createEffect(() => {
+  const styles = () => {
     const { hsl, offset, active, first, last } = props
-    setStyles({
+    return {
       swatch: {
         height: '12px',
         background: `hsl(${hsl.h}, 50%, ${offset * 100}%)`,
@@ -36,8 +34,8 @@ export default function SliderSwatch(_props: Props) {
           : undefined,
         transform: active ? 'scaleY(1.8)' : undefined,
       },
-    })
-  })
+    } as Record<string, JSX.CSSProperties>
+  }
 
   const handleClick = (e: Event) => {
     props.onClick(
