@@ -13,7 +13,7 @@ import {
   CirclePicker,
   GooglePicker,
   ChromePicker,
-  SketchPikcer,
+  SketchPicker,
   PhotoshopPicker,
   RgbColor,
 } from '../src'
@@ -60,7 +60,7 @@ const App: Component = () => {
           <div class={styles.components}>
             <div style={{ 'margin-top': '60px' }}>
               <div class={styles.sketch}>
-                <SketchPikcer color={color()} onChangeComplete={handleChangeComplete} />
+                <SketchPicker color={color()} onChangeComplete={handleChangeComplete} />
                 <div class={styles.customTitle}>Sketch</div>
               </div>
               <div class={styles.photoshop}>

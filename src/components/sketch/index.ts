@@ -1,2 +1,2 @@
-export { default as SketchPikcer } from './Sketch'
+export { default as SketchPicker } from './Sketch'
 export type { SketchPickerProps } from './Sketch'
