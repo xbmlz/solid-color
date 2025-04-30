@@ -9,17 +9,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Publish to Node Package Manager
-      - name: Checkout Repo
-        uses: actions/checkout@main
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.2.2
 
-      - name: Use Node ${{ matrix.node }}
-        uses: actions/setup-node@v1
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 20
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Build
-        run: yarn build
+        run: pnpm run build
