@@ -85,7 +85,7 @@
     "eslint-plugin-no-only-tests": "^3.3.0",
     "eslint-plugin-solid": "^0.14.5",
     "jsdom": "^26.1.0",
-    "prettier": "2.7.1",
+    "prettier": "3.5.3",
     "rollup": "^4.40.1",
     "rollup-preset-solid": "^3.0.0",
     "solid-js": "^1.9.5",
