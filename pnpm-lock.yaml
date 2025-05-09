@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
+      tinycolor2:
+        specifier: ^1.6.0
+        version: 1.6.0
     devDependencies:
       '@solidjs/testing-library':
         specifier: ^0.8.10
@@ -44,9 +51,6 @@ importers:
       jsdom:
         specifier: ^26.1.0
         version: 26.1.0
-      lodash-es:
-        specifier: ^4.17.21
-        version: 4.17.21
       prettier:
         specifier: 2.7.1
         version: 2.7.1
@@ -65,9 +69,6 @@ importers:
       terser:
         specifier: ^5.39.0
         version: 5.39.0
-      tinycolor2:
-        specifier: ^1.6.0
-        version: 1.6.0
       typescript:
         specifier: ^5.8.3
         version: 5.8.3

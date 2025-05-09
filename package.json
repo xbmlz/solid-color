@@ -6,7 +6,7 @@
   "keywords": [
     "solid",
     "solid-component",
-    "color picker",
+    "color-picker",
     "colorpicker",
     "picker",
     "sketch",
@@ -57,16 +57,20 @@
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
-    "minify": "terser --compress --mangle --module -- dist/cjs/index.js > dist/cjs/index.min.js",
-    "example:dev": "vite serve example",
     "example:build": "vite build example",
+    "example:dev": "vite serve example",
     "format": "prettier -w \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"example/**/*.{js,ts,json,css,tsx,jsx}\"",
     "lint": "eslint . --ext .js,.ts,.tsx,.jsx --fix",
+    "minify": "terser --compress --mangle --module -- dist/cjs/index.js > dist/cjs/index.min.js",
     "prepublishOnly": "pnpm build",
     "release": "bumpp --commit --tag --push && npm publish",
     "test": "vitest -c vitest.config.ts",
     "typecheck": "tsc --noEmit",
     "update-deps": "taze -w && pnpm i"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21",
+    "tinycolor2": "^1.6.0"
   },
   "devDependencies": {
     "@solidjs/testing-library": "^0.8.10",
@@ -81,14 +85,12 @@
     "eslint-plugin-no-only-tests": "^3.3.0",
     "eslint-plugin-solid": "^0.14.5",
     "jsdom": "^26.1.0",
-    "lodash-es": "^4.17.21",
     "prettier": "2.7.1",
     "rollup": "^4.40.1",
     "rollup-preset-solid": "^3.0.0",
     "solid-js": "^1.9.5",
     "taze": "^19.0.4",
     "terser": "^5.39.0",
-    "tinycolor2": "^1.6.0",
     "typescript": "^5.8.3",
     "vite": "^6.3.3",
     "vite-plugin-solid": "^2.11.6",
