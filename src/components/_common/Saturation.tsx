@@ -1,4 +1,4 @@
-import merge from 'lodash-es/merge'
+import { merge } from 'es-toolkit'
 import { createEffect, JSX, mergeProps } from 'solid-js'
 import { calculateChange } from '../../helpers/saturation'
 import { ChangeColor, HslColor, HsvColor } from '../../types'
@@ -10,7 +10,7 @@ export type SaturationProps = {
   onChange?: (color: ChangeColor, event?: Event) => void
   shadow?: JSX.CSSProperties['box-shadow']
   radius?: JSX.CSSProperties['border-radius']
-  styles?: Record<string, JSX.CSSProperties>
+  styles?: JSX.CSSProperties
 }
 
 export function Saturation(_props: SaturationProps) {
@@ -25,14 +25,14 @@ export function Saturation(_props: SaturationProps) {
 
   function handleChange(event: MouseEvent | TouchEvent) {
     if (props.onChange) {
-      props.onChange(calculateChange(event, props.hsl, container), event as any)
+      props.onChange(calculateChange(event, props.hsl, container!), event as any)
     }
   }
 
   function handleMouseDown(event: MouseEvent) {
     handleChange(event)
 
-    if (container) {
+    if (container!) {
       container.addEventListener('mousemove', handleChange)
       container.addEventListener('mouseup', handleMouseUp)
     }
@@ -43,7 +43,7 @@ export function Saturation(_props: SaturationProps) {
   }
 
   function unbindEventListeners() {
-    if (container) {
+    if (container!) {
       container.removeEventListener('mousemove', handleChange)
       container.removeEventListener('mouseup', handleMouseUp)
     }
@@ -67,7 +67,7 @@ export function Saturation(_props: SaturationProps) {
         black: {
           position: 'absolute',
           inset: '0px',
-          boxShadow: shadow,
+          "box-shadow": shadow,
           'border-radius': radius,
         },
         pointer: {
@@ -86,7 +86,9 @@ export function Saturation(_props: SaturationProps) {
           transform: 'translate(-2px, -2px)',
         },
       },
-      styles,
+      {
+        saturation: props.styles || {},
+      }
     )
   }
 

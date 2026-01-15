@@ -1,4 +1,4 @@
-import merge from 'lodash-es/merge'
+import { merge } from 'es-toolkit'
 import { createEffect, createSignal, JSX, mergeProps, onCleanup, Show } from 'solid-js'
 
 export interface EditableInputProps {

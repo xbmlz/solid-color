@@ -1,4 +1,4 @@
-import merge from 'lodash-es/merge'
+import { merge } from 'es-toolkit'
 import { JSX, mergeProps } from 'solid-js'
 import { Hue, Saturation, useColorPicker, withColorPicker } from '../_common'
 import GoogleFields from './GoogleFields'

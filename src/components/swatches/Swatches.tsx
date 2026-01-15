@@ -1,4 +1,4 @@
-import merge from 'lodash-es/merge'
+import { merge } from 'es-toolkit'
 import { For, JSX, mergeProps } from 'solid-js'
 import { Color } from '../../types'
 import { Raised, useColorPicker, withColorPicker } from '../_common'

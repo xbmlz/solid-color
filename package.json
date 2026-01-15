@@ -69,7 +69,7 @@
     "update-deps": "taze -w && pnpm i"
   },
   "dependencies": {
-    "lodash-es": "^4.17.21",
+    "es-toolkit": "^1.43.0",
     "tinycolor2": "^1.6.0"
   },
   "devDependencies": {
@@ -87,6 +87,7 @@
     "jsdom": "^26.1.0",
     "prettier": "2.7.1",
     "rollup": "^4.40.1",
+    "rollup-plugin-visualizer": "^6.0.5",
     "rollup-preset-solid": "^3.0.0",
     "solid-js": "^1.9.5",
     "taze": "^19.0.4",

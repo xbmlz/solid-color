@@ -1,4 +1,4 @@
-import merge from 'lodash-es/merge'
+import { merge } from 'es-toolkit'
 import { JSX, mergeProps, onCleanup } from 'solid-js'
 import { HslColor, RgbColor } from '../../types'
 import * as alpha from '../../helpers/alpha'
@@ -12,7 +12,7 @@ export interface AlphaProps {
   a?: number
   radius?: number
   shadow?: string
-  styles?: Record<string, JSX.CSSProperties>
+  styles?: JSX.CSSProperties
   pointer?: <T extends object>(props: T) => JSX.Element
   onChange?: (data: any, e: Event) => void
 }
@@ -34,13 +34,13 @@ export const Alpha = (_props: AlphaProps) => {
         alpha: {
           position: 'absolute',
           inset: '0px',
-          'border-radius': props.radius,
+          'border-radius': `${props.radius}px`,
         },
         checkboard: {
           position: 'absolute',
           inset: '0px',
           overflow: 'hidden',
-          'border-radius': props.radius,
+          'border-radius': `${props.radius}px`,
         },
         gradient: {
           position: 'absolute',
@@ -52,7 +52,7 @@ export const Alpha = (_props: AlphaProps) => {
               : `linear-gradient(to right, rgba(${rgb.r},${rgb.g},${rgb.b}, 0) 0%,
          rgba(${rgb.r},${rgb.g},${rgb.b}, 1) 100%)`,
           'box-shadow': props.shadow,
-          'border-radius': props.radius,
+          'border-radius': `${props.radius}px`,
         },
         container: {
           position: 'relative',
@@ -74,12 +74,14 @@ export const Alpha = (_props: AlphaProps) => {
           transform: 'translateX(-2px)',
         },
       },
-      props.styles,
+      {
+        alpha: props.styles,
+      }
     )
   }
 
   const handleChange = (e: Event) => {
-    const change = alpha.calculateChange(e, props.hsl, props.direction, props.a, container)
+    const change = alpha.calculateChange(e, props.hsl, props.direction, props.a, container!)
     change && typeof props.onChange === 'function' && props.onChange(change, e)
   }
 

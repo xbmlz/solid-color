@@ -7,6 +7,7 @@
 [![Npm Version](https://img.shields.io/npm/v/solid-color)](https://www.npmjs.com/package/solid-color)
 [![License](https://img.shields.io/npm/l/solid-color)](LICENSE)
 [![Downloads](https://img.shields.io/npm/dm/solid-color)](https://npm-stat.com/charts.html?package=solid-color)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/solid-color)](https://bundlephobia.com/package/solid-color)
 
 🎨 Color Pickers for Sketch, Photoshop, Chrome & more with SolidJS.
 

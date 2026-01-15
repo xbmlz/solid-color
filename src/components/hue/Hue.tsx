@@ -3,7 +3,7 @@ import { ChangeColor } from '../../types'
 import { Hue } from '../_common'
 import HuePointer from './HuePointer'
 import { JSX, mergeProps } from 'solid-js'
-import merge from 'lodash-es/merge'
+import { merge } from 'es-toolkit'
 
 export type HuePickerProps = {
   width?: string | number

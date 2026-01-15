@@ -8,7 +8,7 @@ interface HueProps {
   radius?: number | string
   shadow?: string
   hsl: HslColor
-  styles?: Record<string, JSX.CSSProperties>
+  styles?: JSX.CSSProperties
   pointer?: <T extends object>(props: T) => JSX.Element
   onChange?: (data: HslColor, e: MouseEvent) => void
 }
@@ -55,7 +55,7 @@ export function Hue(_props: HueProps) {
   }
 
   const handleChange = (e: MouseEvent) => {
-    const change = calculateChange(e, props.direction, props.hsl, container)
+    const change = calculateChange(e, props.direction, props.hsl, container!)
     change && typeof props.onChange === 'function' && props.onChange(change, e)
   }
 
