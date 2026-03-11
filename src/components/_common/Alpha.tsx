@@ -1,4 +1,4 @@
-import { merge } from 'es-toolkit'
+import { merge } from 'lodash-es'
 import { JSX, mergeProps, onCleanup } from 'solid-js'
 import { HslColor, RgbColor } from '../../types'
 import * as alpha from '../../helpers/alpha'

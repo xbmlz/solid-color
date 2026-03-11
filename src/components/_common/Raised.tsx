@@ -1,4 +1,4 @@
-import { merge } from 'es-toolkit'
+import { merge } from 'lodash-es'
 import { JSX, mergeProps } from 'solid-js'
 
 export interface RaisedProps {

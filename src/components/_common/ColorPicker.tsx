@@ -11,7 +11,7 @@ import {
 } from 'solid-js'
 import { ChangeColor, Color, ColorResult } from '../../types'
 import * as color from '../../helpers/color'
-import { debounce } from 'es-toolkit'
+import { debounce } from 'lodash-es'
 
 export interface ColorPickerContextType {
   colors: Accessor<ColorResult>

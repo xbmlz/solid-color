@@ -1,4 +1,4 @@
-import { merge } from 'es-toolkit'
+import { merge } from 'lodash-es'
 import { For, JSX, mergeProps } from 'solid-js'
 import { HexColor } from '../../types'
 import { useColorPicker, withColorPicker } from '../_common'

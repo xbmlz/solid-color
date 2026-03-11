@@ -1,4 +1,4 @@
-import { merge } from 'es-toolkit'
+import { merge } from 'lodash-es'
 import { createEffect, JSX, mergeProps } from 'solid-js'
 import { calculateChange } from '../../helpers/saturation'
 import { ChangeColor, HslColor, HsvColor } from '../../types'

@@ -3,7 +3,7 @@ import { HexColor } from '../../types'
 import { Checkboard, EditableInput, useColorPicker, withColorPicker } from '../_common'
 import BlockSwatches from './BlockSwatches'
 import { JSX, mergeProps } from 'solid-js'
-import { merge } from 'es-toolkit'
+import { merge } from 'lodash-es'
 
 export type BlockPickerProps = {
   width?: string | number
